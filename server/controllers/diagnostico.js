@@ -34,6 +34,14 @@ class Diagnostico {
         .findAll()
         .then(data => res.status(200).json(data));
     }
+    //mostrar por codigo
+    static one_diagnostico(req, res) {
+        return diagnostico
+        .findAll({
+            where:{codigo: req.params.codigo}
+        })
+        .then(data => res.status(200).json(data));
+    }
 }
 
 export default Diagnostico

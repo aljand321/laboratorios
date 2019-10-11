@@ -23,4 +23,6 @@ app.get('/api', (req, res) => res.status(200).send({
     //Diagnostico
     app.post('/diagnostico', Diagnostico.create_diagnostico)
     app.get('/diagnostico', Diagnostico.lista_diagnostico_ci_10)
+    app.get('/one_diagnostico/:codigo', Diagnostico.one_diagnostico)
+
 };
