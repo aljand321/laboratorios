@@ -2,6 +2,7 @@ import Users from '../controllers/user';
 import Books from '../controllers/book';
 
 import Diagnostico from '../controllers/diagnostico'
+import lab from '../controllers/consulta_lab'
 
 export default (app) => {
 
@@ -24,5 +25,9 @@ app.get('/api', (req, res) => res.status(200).send({
     app.post('/diagnostico', Diagnostico.create_diagnostico)
     app.get('/diagnostico', Diagnostico.lista_diagnostico_ci_10)
     app.get('/one_diagnostico/:codigo', Diagnostico.one_diagnostico)
+
+    //Laboratorios
+    app.post('/api/create_lab_consulta/:id_consulta', lab.create_lab_consulta )
+    app.get('/api/list_lab', lab.lista_laboratorios)
 
 };
