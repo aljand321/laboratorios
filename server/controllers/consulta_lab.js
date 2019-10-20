@@ -4,9 +4,9 @@ const { consulta_lab } = model;
 
 class lab {
     static create_lab_consulta(req,res){
-        const { fecha,hora,historial,nombre_doctor,examen,otros } = req.body
+        const { fecha,hora,historial,nombre_doctor,examen,otros,tipo_laboratorio } = req.body
         const { id_consulta } = req.params
-        if(!fecha || !hora || !historial || isNaN(historial) || !nombre_doctor || !examen || !otros ){
+        if(!fecha || !hora || !historial || isNaN(historial) || !nombre_doctor || !examen || !otros || !tipo_laboratorio ){
             if(!fecha){
                 res.status(400).json({
                     success:false,
@@ -32,10 +32,16 @@ class lab {
                     success:false,
                     msg: "Tipo de examen es obligatorio seleccione uno a varios"
                 })
+            }else if(!tipo_laboratorio){
+                res.status(400).json({
+                    success:false,
+                    msg: "No se esta mandando el tipo de laboratorio"
+                })
             }
         }else{
             return consulta_lab
             .create({
+                tipo_laboratorio,
                 fecha,
                 hora,
                 historial,

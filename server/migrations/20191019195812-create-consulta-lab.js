@@ -14,6 +14,9 @@ module.exports = {
       estado_update: {
         type: Sequelize.BOOLEAN
       },
+      tipo_laboratorio:{
+        type: Sequelize.STRING
+      },
       fecha: {
         type: Sequelize.STRING
       },

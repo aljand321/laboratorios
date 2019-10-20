@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const consulta_lab = sequelize.define('consulta_lab', {
     estado: DataTypes.BOOLEAN,
     estado_update: DataTypes.BOOLEAN,
+    tipo_laboratorio:DataTypes.STRING,
     fecha: DataTypes.STRING,
     hora: DataTypes.STRING,
     historial: DataTypes.INTEGER,
