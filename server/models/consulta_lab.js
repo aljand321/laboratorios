@@ -17,6 +17,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   consulta_lab.associate = function(models) {
     // associations can be defined here
+    consulta_lab.hasMany(models.resp_lab, {
+      foreignKey: 'id_lab',
+    });
   };
   return consulta_lab;
 };

@@ -1,25 +1,18 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('consulta_labs', {
+    return queryInterface.createTable('resp_labs', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      estado:{
-        type: Sequelize.BOOLEAN,
-        allowNull: false, 
-        defaultValue: true
+      estado: {
+        type: Sequelize.BOOLEAN
       },
       estado_update: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false, 
-        defaultValue: true
-      },
-      tipo_laboratorio:{
-        type: Sequelize.STRING
+        type: Sequelize.BOOLEAN
       },
       fecha: {
         type: Sequelize.STRING
@@ -30,23 +23,23 @@ module.exports = {
       historial: {
         type: Sequelize.INTEGER
       },
-      nombre_doctor: {
+      nombre_user: {
         type: Sequelize.TEXT
       },
-      examen: {
-        type: Sequelize.JSON
+      imagen_resp: {
+        type: Sequelize.STRING
       },
-      otros: {
+      descripcion: {
         type: Sequelize.TEXT
       },
-      id_internacion: {
-        type: Sequelize.INTEGER
-      },
-      id_consulta: {
-        type: Sequelize.INTEGER
-      },
-      id_emergencia: {
-        type: Sequelize.INTEGER
+      id_lab: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'consulta_labs',
+          key: 'id',
+          as: 'id_lab',
+        }
       },
       id_user: {
         type: Sequelize.INTEGER
@@ -62,6 +55,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('consulta_labs');
+    return queryInterface.dropTable('resp_labs');
   }
 };

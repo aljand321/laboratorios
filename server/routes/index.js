@@ -3,6 +3,8 @@ import Books from '../controllers/book';
 
 import Diagnostico from '../controllers/diagnostico'
 import lab from '../controllers/consulta_lab'
+import Respues_lab from '../controllers/resp_lab'
+
 
 export default (app) => {
 
@@ -28,6 +30,17 @@ app.get('/api', (req, res) => res.status(200).send({
 
     //Laboratorios
     app.post('/api/create_lab_consulta/:id_consulta', lab.create_lab_consulta )
-    app.get('/api/list_lab', lab.lista_laboratorios)
+    app.get('/api/list_laboratorios_all', lab.lista_laboratorios)
+    app.get('/api/list_ecografia/:historial', lab.lista_Ecografia)
+    app.get('/api/list_rayosX/:historial', lab.lista_rayosX)
+    app.get('/api/list_lab/:historial', lab.lista_lab)
+
+    app.get('/api/one_lab/:id_lab', lab.one_lab)
+
+    //lista de respuesta de laboratorios
+    app.post('/api/registrar_espuesta_lab/:id_lab', Respues_lab.register_resp_lab )
+    app.get('/api/list_resp_lab', Respues_lab.list_respuesta_lab)
+
+
 
 };
