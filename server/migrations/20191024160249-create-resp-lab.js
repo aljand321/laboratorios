@@ -9,10 +9,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       estado: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        allowNull: false, 
+        defaultValue: true
       },
       estado_update: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        allowNull: false, 
+        defaultValue: true
       },
       fecha: {
         type: Sequelize.STRING

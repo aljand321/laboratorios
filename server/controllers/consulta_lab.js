@@ -109,6 +109,61 @@ class lab {
         })
         .then(data => res.status(200).json(data));
     }
+
+    //lista dinamica de laboratorios
+    static list_dinamic(req, res) {
+        const { nombre } = req.params
+        return consulta_lab
+        .findAll({
+            where:{ tipo_laboratorio : nombre, estado: 'true' }
+        })
+        .then(data => res.status(200).json(data));
+    }
+    //lista dinamica false de laboratorios
+    static list_dinamic_false(req, res) {
+        const { nombre } = req.params
+        return consulta_lab
+        .findAll({
+            where:{ tipo_laboratorio : nombre, estado : 'false' }
+        })
+        .then(data => res.status(200).json(data));
+    }
+    static update_estado_lab(req, res){
+        const { estado } = req.body
+       
+        
+            return consulta_lab
+            .findByPk(req.params.id_lab)
+            .then((data) => {
+              data.update({
+               
+                estado : estado  || data.estado    
+              })
+              .then(update => {
+                res.status(200).json({
+                  success: true,
+                  msg: 'Se actualizo el estado',
+                  data : {
+                    estado : estado  || update.estado 
+                  }
+                })
+                .catch(error => {
+                  res.status(500).json({
+                    success:false,
+                    msg: "Algo sucedio con el servidor",
+                    error
+                  })
+                })
+              })
+              .catch(error => {
+                res.status(500).json({
+                  success:false,
+                  msg: "Algo sucedio con el servidor",
+                  error
+                })
+              })
+        })
+    }
 }
 
 export default lab

@@ -37,9 +37,14 @@ app.get('/api', (req, res) => res.status(200).send({
 
     app.get('/api/one_lab/:id_lab', lab.one_lab)
 
+    app.get('/api/list_dianmic_lab/:nombre', lab.list_dinamic) /// esta lista es para poder mostrar la lista dianmicas de los laboratorios segun el tipo de laboratorio
+    app.get('/api/list_dinamic_false/:nombre', lab.list_dinamic_false)
+
+    app.post('/api/update_estado_labRespuesta/:id_lab', lab.update_estado_lab)
     //lista de respuesta de laboratorios
     app.post('/api/registrar_espuesta_lab/:id_lab', Respues_lab.register_resp_lab )
     app.get('/api/list_resp_lab', Respues_lab.list_respuesta_lab)
+    
 
 
 
