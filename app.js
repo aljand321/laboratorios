@@ -9,10 +9,20 @@ const hostname = '127.0.0.1';
 const port = 3050;
 const app = express()
 const server = http.createServer(app);
+
+var formidable = require("express-form-data") // esto es para la subida de archivos
+
+
+
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 routes(app);
+
+app.use(formidable.parse({ keepExtensions : true, uploadDir:"images" })); // esto es para la subida de archivos
+
+
 app.get('*', (req, res) => res.status(200).send({
   message: 'Welcome to the .',
 }));

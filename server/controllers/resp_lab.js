@@ -5,6 +5,7 @@ const { consulta_lab } = model;
 
 class Respues_lab { 
     static register_resp_lab(req,res){
+        console.log(req.body,  " esto es lo que quiero ver ")
         const { fecha,hora,historial,nombre_user,descripcion,id_user } = req.body
         const { id_lab } = req.params
         if( !fecha || !hora || !historial || isNaN(historial) || !nombre_user  || !id_user ){
@@ -75,7 +76,7 @@ class Respues_lab {
             });
             
                 
-        }      
+        }
     }
     //lista de respuesta de laboratorios
     static list_respuesta_lab(req, res) {
