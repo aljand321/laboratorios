@@ -18,6 +18,9 @@ module.exports = {
         allowNull: false, 
         defaultValue: true
       },
+      consultorio:{
+        type: Sequelize.STRING
+      },
       tipo_laboratorio:{
         type: Sequelize.STRING
       },
