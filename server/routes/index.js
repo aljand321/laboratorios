@@ -32,6 +32,8 @@ app.get('/api', (req, res) => res.status(200).send({
     app.post('/api/create_lab_consulta/:id_consulta', lab.create_lab_consulta )
     app.post('/api/create_lab_consulta_emg/:id_emergencia', lab.create_lab_consulta_emg )
     app.get('/api/list_laboratorios_all', lab.lista_laboratorios)
+
+
     app.get('/api/list_ecografia/:historial', lab.lista_Ecografia)
     app.get('/api/list_rayosX/:historial', lab.lista_rayosX)
     app.get('/api/list_lab/:historial', lab.lista_lab)
@@ -42,6 +44,14 @@ app.get('/api', (req, res) => res.status(200).send({
     app.get('/api/list_dinamic_false/:nombre', lab.list_dinamic_false)
 
     app.post('/api/update_estado_labRespuesta/:id_lab', lab.update_estado_lab)
+
+
+    app.get('/api/lista_Ecografia_emg/:id_emg/:historial',lab.lista_Ecografia_emg)
+    app.get('/api/lista_rayosX_emg/:id_emg/:historial',lab.lista_rayosX_emg)
+    app.get('/api/lista_lab_emg/:id_emg/:historial',lab.lista_lab_emg1)
+
+
+    app.get('/api/list_lab_emg/:id_emg', lab.lista_lab_emg)
     //lista de respuesta de laboratorios
     app.post('/api/registrar_espuesta_lab/:id_lab', Respues_lab.register_resp_lab )
     app.get('/api/list_resp_lab', Respues_lab.list_respuesta_lab)

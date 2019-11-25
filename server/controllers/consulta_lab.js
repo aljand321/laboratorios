@@ -179,6 +179,39 @@ class lab {
         })
         .then(data => res.status(200).json(data));
     }
+
+    /* 
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    */
+    static lista_Ecografia_emg(req, res) {
+        const { historial,id_emg } = req.params
+        return consulta_lab
+        .findAll({
+            where:{tipo_laboratorio: "ECOGRAFIA", historial : historial, id_emergencia:id_emg }
+        })
+        .then(data => res.status(200).json(data));
+    }
+    //lista Rayos x
+     static lista_rayosX_emg(req, res) {
+        const { historial,id_emg } = req.params
+        return consulta_lab
+        .findAll({
+            where:{tipo_laboratorio: "Rayos_x", historial : historial, id_emergencia:id_emg }
+        })
+        .then(data => res.status(200).json(data));
+    }
+     //lista laboratorios
+    static lista_lab_emg1(req, res) {
+        const { historial,id_emg } = req.params
+        return consulta_lab
+        .findAll({
+            where:{tipo_laboratorio: "LABORATORIO", historial : historial, id_emergencia:id_emg }
+        })
+        .then(data => res.status(200).json(data));
+    }
+    /*
+    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+     */
     // one lab id
     static one_lab(req, res) {
         const { id_lab } = req.params
@@ -242,6 +275,15 @@ class lab {
                 })
               })
         })
+    }
+
+    static lista_lab_emg(req, res) {
+        const { id_emg } = req.params
+        return consulta_lab
+        .findAll({
+            where : {id_emergencia: id_emg}
+        })
+        .then(data => res.status(200).json(data));
     }
 }
 
