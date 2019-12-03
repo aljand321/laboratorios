@@ -31,6 +31,9 @@ app.get('/api', (req, res) => res.status(200).send({
     //Laboratorios
     app.post('/api/create_lab_consulta/:id_consulta', lab.create_lab_consulta )
     app.post('/api/create_lab_consulta_emg/:id_emergencia', lab.create_lab_consulta_emg )
+
+    app.post('/api/create_lab_hospitalizacion/:id_internacion', lab.create_lab_hospitalizacion )
+
     app.get('/api/list_laboratorios_all', lab.lista_laboratorios)
 
 
