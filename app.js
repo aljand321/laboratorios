@@ -5,12 +5,17 @@ import express from 'express'
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 import routes from './server/routes';
+import { pathToFileURL } from 'url';
+
+const path  = require('path');
+const multer = require('multer');
+
 const hostname = '127.0.0.1';
 const port = 3050;
 const app = express()
 const server = http.createServer(app);
 
-var formidable = require("express-form-data") // esto es para la subida de archivos
+
 
 
 
@@ -20,7 +25,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 routes(app);
 
-app.use(formidable.parse({ keepExtensions : true, uploadDir:"images" })); // esto es para la subida de archivos
+app.use(multer({
+  dest: path.join(__dirname, 'public/img')
+}).single('image'));
 
 
 app.get('*', (req, res) => res.status(200).send({

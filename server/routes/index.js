@@ -37,9 +37,9 @@ app.get('/api', (req, res) => res.status(200).send({
     app.get('/api/list_laboratorios_all', lab.lista_laboratorios)
 
 
-    app.get('/api/list_ecografia/:historial', lab.lista_Ecografia)
-    app.get('/api/list_rayosX/:historial', lab.lista_rayosX)
-    app.get('/api/list_lab/:historial', lab.lista_lab)
+    app.get('/api/list_ecografia/:historial/:id_consulta_externa', lab.lista_Ecografia)
+    app.get('/api/list_rayosX/:historial/:id_consulta_externa', lab.lista_rayosX)
+    app.get('/api/list_lab/:historial/:id_consulta_externa', lab.lista_lab)
 
     app.get('/api/one_lab/:id_lab', lab.one_lab)
 
@@ -48,16 +48,39 @@ app.get('/api', (req, res) => res.status(200).send({
 
     app.post('/api/update_estado_labRespuesta/:id_lab', lab.update_estado_lab)
 
+    /*
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+                                        lista de laboratorios de emergencia
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+     */
 
-    app.get('/api/lista_Ecografia_emg/:id_emg/:historial',lab.lista_Ecografia_emg)
-    app.get('/api/lista_rayosX_emg/:id_emg/:historial',lab.lista_rayosX_emg)
-    app.get('/api/lista_lab_emg/:id_emg/:historial',lab.lista_lab_emg1)
-
+    app.get('/api/lista_Ecografia_emg/:id_consulta_emg/:historial',lab.lista_Ecografia_emg)
+    app.get('/api/lista_rayosX_emg/:id_consulta_emg/:historial',lab.lista_rayosX_emg)
+    app.get('/api/lista_lab_emg1/:id_consulta_emg/:historial',lab.lista_lab_emg)
+    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     app.get('/api/list_lab_emg/:id_emg', lab.lista_lab_emg)
+
+    /*
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+                                        lista de laboratorios de hospitalizacion
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+     */
+    app.get('/api/lista_Ecografia_hospitalizacion/:historial/:id_internacion', lab.lista_Ecografia_hospitalizacion)
+    app.get('/api/lista_rayosX_hopitalizacion/:historial/:id_internacion', lab.lista_rayosX_hopitalizacion)
+    app.get('/api/lista_lab_hospitalizacion/:historial/:id_internacion', lab.lista_lab_hospitalizacion)
+    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Z
+    
+    
+
     //lista de respuesta de laboratorios
     app.post('/api/registrar_espuesta_lab/:id_lab', Respues_lab.register_resp_lab )
     app.get('/api/list_resp_lab', Respues_lab.list_respuesta_lab)
+    app.get('/api/one_resp_lab/:id_lab',Respues_lab.one_res_lab)
     
 
 

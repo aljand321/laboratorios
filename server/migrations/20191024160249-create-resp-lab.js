@@ -31,7 +31,10 @@ module.exports = {
         type: Sequelize.TEXT
       },
       imagen_resp: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING   
+      },
+      img_id: {
+        type: Sequelize.STRING   
       },
       descripcion: {
         type: Sequelize.TEXT

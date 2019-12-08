@@ -6,9 +6,9 @@ const { consulta_lab } = model;
 class Respues_lab { 
     static register_resp_lab(req,res){
         console.log(req.body,  " esto es lo que quiero ver ")
-        const { fecha,hora,historial,nombre_user,descripcion,id_user } = req.body
+        const { fecha,hora,historial,nombre_user,imagen_resp,img_id,descripcion,id_user } = req.body
         const { id_lab } = req.params
-        if( !fecha || !hora || !historial || isNaN(historial) || !nombre_user  || !id_user ){
+        if( !fecha || !hora || !historial || isNaN(historial) || !nombre_user  || !id_user || !imagen_resp || !img_id ){
             if(!fecha){
                 res.status(400).json({
                     success:false,
@@ -34,6 +34,11 @@ class Respues_lab {
                     success:false,
                     msg:"el id del usuario no se esta mandando"
                 })
+            }else if (!imagen_resp || !img_id){
+                res.status(400).json({
+                    success:false,
+                    msg:"Selecione una imagen por favor"
+                })
             }
         }else{
             return resp_lab
@@ -54,6 +59,10 @@ class Respues_lab {
                         hora,
                         historial,
                         nombre_user,
+
+                        imagen_resp,
+                        img_id,
+
                         descripcion,
                         id_lab,
                         id_user
@@ -82,6 +91,17 @@ class Respues_lab {
     static list_respuesta_lab(req, res) {
         return resp_lab
         .findAll()
+        .then(data => res.status(200).json(data));
+    }
+
+    //one_ resp lab id
+    static one_res_lab(req, res) {
+        const { id_lab } = req.params
+        return resp_lab
+        
+        .findAll({
+            where:{id_lab: id_lab}
+        })
         .then(data => res.status(200).json(data));
     }
    

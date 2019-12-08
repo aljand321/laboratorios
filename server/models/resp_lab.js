@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     historial: DataTypes.INTEGER,
     nombre_user: DataTypes.TEXT,
     imagen_resp: DataTypes.STRING,
+    img_id: DataTypes.STRING,
     descripcion: DataTypes.TEXT,
     id_lab: {
       type: DataTypes.INTEGER,
