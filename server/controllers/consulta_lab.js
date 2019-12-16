@@ -355,7 +355,7 @@ class lab {
         })
     }
 
-    static lista_lab_emg(req, res) {
+    static lista_lab_emg1(req, res) {
         const { id_emg } = req.params
         return consulta_lab
         .findAll({
@@ -406,7 +406,7 @@ class lab {
     }
 
 
-    //lista ecografias de hospitalizacion
+    //lista ecografias de emergecnia
     static lista_Ecografia_emg(req, res) {
         const { historial, id_consulta_emg } = req.params
         return consulta_lab
@@ -419,7 +419,7 @@ class lab {
         })
         .then(data => res.status(200).json(data));
     }
-    //lista Rayos x de hospitalizacion
+    //lista Rayos x de emergecnia
     static lista_rayosX_emg(req, res) {
         const { historial, id_consulta_emg } = req.params
         return consulta_lab
@@ -433,12 +433,60 @@ class lab {
         .then(data => res.status(200).json(data));
     }
 
-     //lista laboratorios hospitalizacion
+     //lista laboratorios emergecnia
      static lista_lab_emg(req, res) {
         const { historial, id_consulta_emg } = req.params
         return consulta_lab
         .findAll({
             where:{tipo_laboratorio: "LABORATORIO", historial : historial,  id_emergencia : id_consulta_emg },
+            include:[{
+                model:resp_lab,
+                attributes:['id','imagen_resp']
+            }]
+        })
+        .then(data => res.status(200).json(data));
+    }
+    /*
+        z<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        z<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                    Para internaicion 
+        z<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        z<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    */
+
+    //lista ecografias de emergecnia
+    static lista_Ecografia_inter(req, res) {
+        const { historial, id_internacion } = req.params
+        return consulta_lab
+        .findAll({
+            where:{tipo_laboratorio: "ECOGRAFIA", historial : historial, id_internacion : id_internacion },
+            include:[{
+                model:resp_lab,
+                attributes:['id','imagen_resp']
+            }]
+        })
+        .then(data => res.status(200).json(data));
+    }
+    //lista Rayos x de emergecnia
+    static lista_rayosX_inter(req, res) {
+        const { historial, id_internacion } = req.params
+        return consulta_lab
+        .findAll({
+            where:{tipo_laboratorio: "Rayos_x", historial : historial, id_internacion : id_internacion },
+            include:[{
+                model:resp_lab,
+                attributes:['id','imagen_resp']
+            }]
+        })
+        .then(data => res.status(200).json(data));
+    }
+
+    //lista laboratorios emergecnia
+    static lista_lab_inter(req, res) {
+        const { historial, id_internacion } = req.params
+        return consulta_lab
+        .findAll({
+            where:{tipo_laboratorio: "LABORATORIO", historial : historial,  id_internacion : id_internacion },
             include:[{
                 model:resp_lab,
                 attributes:['id','imagen_resp']
