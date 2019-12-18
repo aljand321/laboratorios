@@ -434,7 +434,7 @@ class lab {
     }
 
      //lista laboratorios emergecnia
-     static lista_lab_emg(req, res) {
+    static lista_lab_emg(req, res) {
         const { historial, id_consulta_emg } = req.params
         return consulta_lab
         .findAll({
@@ -487,6 +487,54 @@ class lab {
         return consulta_lab
         .findAll({
             where:{tipo_laboratorio: "LABORATORIO", historial : historial,  id_internacion : id_internacion },
+            include:[{
+                model:resp_lab,
+                attributes:['id','imagen_resp']
+            }]
+        })
+        .then(data => res.status(200).json(data));
+    }
+
+    /*
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+                                        laboratorios de consulta externa
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+        <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 
+    */
+    //lista ecografias de emergecnia
+    static lista_Ecografia_consulta(req, res) {
+        const { historial, id_consulta } = req.params
+        return consulta_lab
+        .findAll({
+            where:{tipo_laboratorio: "ECOGRAFIA", historial : historial, id_consulta : id_consulta },
+            include:[{
+                model:resp_lab,
+                attributes:['id','imagen_resp']
+            }]
+        })
+        .then(data => res.status(200).json(data));
+    }
+    //lista Rayos x de emergecnia
+    static lista_rayosX_consulta(req, res) {
+        const { historial, id_consulta } = req.params
+        return consulta_lab
+        .findAll({
+            where:{tipo_laboratorio: "Rayos_x", historial : historial, id_consulta : id_consulta },
+            include:[{
+                model:resp_lab,
+                attributes:['id','imagen_resp']
+            }]
+        })
+        .then(data => res.status(200).json(data));
+    }
+
+     //lista laboratorios emergecnia
+    static lista_lab_consulta(req, res) {
+        const { historial, id_consulta } = req.params
+        return consulta_lab
+        .findAll({
+            where:{tipo_laboratorio: "LABORATORIO", historial : historial,  id_consulta : id_consulta },
             include:[{
                 model:resp_lab,
                 attributes:['id','imagen_resp']
